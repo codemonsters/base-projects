@@ -1,4 +1,4 @@
-SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720 -- El juego se programa dentro de esta pantalla de tamaño (la ventana se escalará según sea necesario)
+local _fixed_width, _fixed_height = 1280, 720 -- El juego se programa dentro una pantalla de este tamaño fijo (la ventana escalará esto según sea necesario)
 
 -- define la variable booleana 'mobile' para saber si el juego se está ejecutando en un dispositivo móvil
 if love.system.getOS() == "iOS" or love.system.getOS() == "Android" then
@@ -10,19 +10,22 @@ end
 -- actualiza las variables que se utilizan para hacer correctamente el escalado (es necesario llamar a esta función al iniciar el juego y también cada vez que se redimensiona la ventana)
 -- (calcula el valor de las variables factorEscala, desplazamientoX, desplazamientoY utilizadas para escalar y desplazar el viewport del juego dentro de la ventana principal)
 function update_scale_variables(device_width, device_height)
-    local factorEscalaAncho = device_width / SCREEN_WIDTH
-    local factorEscalaAlto = device_height / SCREEN_HEIGHT
+    local factorEscalaAncho = device_width / _fixed_width
+    local factorEscalaAlto = device_height / _fixed_height
     if factorEscalaAncho < factorEscalaAlto then
         factorEscala = factorEscalaAncho
     else
         factorEscala = factorEscalaAlto
     end
 
-    desplazamientoX = (device_width - factorEscala * SCREEN_WIDTH) / 2
-    desplazamientoY = (device_height - factorEscala * SCREEN_HEIGHT) / 2
+    desplazamientoX = (device_width - factorEscala * _fixed_width) / 2
+    desplazamientoY = (device_height - factorEscala * _fixed_height) / 2
 end
 
-function init_autoscale()
+function init_autoscale(fixed_width, fixed_height)
+    _fixed_width = fixed_width
+    _fixed_height = fixed_height
+
     if mobile then
         love.window.setFullscreen(true)
         device_width, device_height = love.graphics.getDimensions()
@@ -41,8 +44,5 @@ function init_autoscale()
             )
         end
     end
-
     update_scale_variables(device_width, device_height)
 end
-
-

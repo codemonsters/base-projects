@@ -4,7 +4,7 @@ local screen = {
     update = function(dt)
     end,
     draw = function()
-        love.graphics.print("*** MENU ***", 400, 300)
+        love.graphics.print("*** MENU ***", 100, 100)
     end,
     keypressed = function(key)
         if key == "space" then
