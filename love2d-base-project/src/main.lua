@@ -3,6 +3,9 @@ require ("./misc/utils")
 
 enable_local_lua_debugger()
 
+FIXED_WIDTH = 384
+FIXED_HEIGHT = 216
+
 -- *** CALLBACKS LOVE2D *** --
 
 function change_screen(screen_module_name)
@@ -13,7 +16,7 @@ end
 function love.load()
     love.graphics.setDefaultFilter("nearest") -- definimos el filtro usado durante el escalado
     change_screen("menu")
-    autoscale.init(384, 216)    -- pasamos como argumento la resolución fija a la que diseñaremos el juego
+    autoscale.init(FIXED_WIDTH, FIXED_HEIGHT)    -- pasamos como argumento la resolución fija a la que diseñaremos el juego
 end
 
 function love.update(dt)
