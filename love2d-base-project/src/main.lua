@@ -10,7 +10,7 @@ FIXED_HEIGHT = 216
 
 function change_screen(screen_module_name)
     current_screen = require("./screens/" .. screen_module_name)
-    current_screen.load()
+    current_screen:load()
 end
 
 function love.load()
@@ -20,21 +20,21 @@ function love.load()
 end
 
 function love.update(dt)
-    current_screen.update(dt)
+    current_screen:update(dt)
 end
 
 function love.draw()
     autoscale.before_draw()
-    current_screen.draw()
+    current_screen:draw()
     autoscale.after_draw()
 end
 
 function love.keypressed(key)
-    current_screen.keypressed(key)
+    current_screen:keypressed(key)
 end
 
 function love.keyreleased(key)
-    current_screen.keyreleased(key)
+    current_screen:keyreleased(key)
 end
 
 function love.resize(w, h)

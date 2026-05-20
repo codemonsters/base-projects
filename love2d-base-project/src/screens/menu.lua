@@ -1,17 +1,17 @@
 local screen = {
-    load = function()
+    load = function(self)
     end,
-    update = function(dt)
+    update = function(self, dt)
     end,
-    draw = function()
+    draw = function(self)
         love.graphics.print("*** MENU ***", 100, 100)
     end,
-    keypressed = function(key)
+    keypressed = function(self, key)
         if key == "space" then
             change_screen("game")
         end
     end,
-    keyreleased = function(key)
+    keyreleased = function(self, key)
     end
 }
 return screen

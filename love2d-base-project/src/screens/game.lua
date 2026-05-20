@@ -1,22 +1,23 @@
 local screen = {
-    load = function()
-        background_image = love.graphics.newImage("assets/background.png")
-        hero_module = require("../entities/hero")
-        hero = hero_module.new_hero(0, 0)
+    _hero_module = require("../entities/hero"),
+
+    load = function(self)
+        self.background_image = love.graphics.newImage("assets/background.png")
+        self.hero = self._hero_module.new_hero(54, 130)
     end,
-    update = function(dt)
-        hero:update(dt) -- hero.update(hero, dt)
+    update = function(self, dt)
+        self.hero:update(dt) -- hero.update(hero, dt)
     end,
-    draw = function()
-        love.graphics.draw(background_image, 0,0)
-        hero:draw() -- hero.draw(hero)
-        hero:draw_hitbox()
+    draw = function(self)
+        love.graphics.draw(self.background_image, 0,0)
+        self.hero:draw() -- hero.draw(hero)
+        self.hero:draw_hitbox()
     end,
-    keypressed = function(key)
-        hero:keypressed(key)
+    keypressed = function(self, key)
+        self.hero:keypressed(key)
     end,
-    keyreleased = function(key)
-        hero:keyreleased(key)
+    keyreleased = function(self, key)
+        self.hero:keyreleased(key)
     end
 }
 

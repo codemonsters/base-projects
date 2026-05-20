@@ -1,9 +1,9 @@
 local my_module = {}
 
-function my_module.new_hero(xinit, yinit)
+function my_module.new_hero(x_init, y_init)
     local hero = {
-        x = 0,
-        y = 0,
+        x = x_init,
+        y = y_init,
         img_shift_x = -60,
         img_shift_y = -130,
         hitbox = {x = 2, y = 4, w = 23, h = 40},
