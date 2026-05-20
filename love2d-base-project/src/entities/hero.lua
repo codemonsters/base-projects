@@ -20,9 +20,11 @@ function my_module.new_hero(x_init, y_init)
         end,
         draw = function(self)
             -- dibujar el héroe
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(self.image, self.x + self.img_shift_x, self.y + self.img_shift_y)
         end,
         draw_hitbox = function(self)
+            love.graphics.setColor(1, 0, 0, 1)
             love.graphics.rectangle(
                 "line",
                 self.x + self.hitbox.x,

@@ -9,6 +9,7 @@ local screen = {
         self.hero:update(dt) -- hero.update(hero, dt)
     end,
     draw = function(self)
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.draw(self.background_image, 0,0)
         self.hero:draw() -- hero.draw(hero)
         self.hero:draw_hitbox()
