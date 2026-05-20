@@ -1,14 +1,51 @@
-local hero = {
-    x = 20,
-    y = 10,
-    image = love.graphics.newImage("assets/hero.png"),
-    update = function(dt)
-        -- cosas de héroes
-    end,
-    draw = function()
-        -- dibujar el héroe
-        love.graphics.draw(hero.image, hero.x, hero.y)
-    end
-}
+local my_module = {}
 
-return hero
+function my_module.new_hero(xinit, yinit)
+    local hero = {
+        x = 0,
+        y = 0,
+        img_shift_x = -60,
+        img_shift_y = -130,
+        hitbox = {x = 2, y = 4, w = 23, h = 40},
+        image = love.graphics.newImage("assets/hero.png"),
+        _left_pressed = false,
+        _right_pressed = false,
+        update = function(self, dt)
+            if self._left_pressed then
+                self.x = self.x - 1
+            end
+            if self._right_pressed then
+                self.x = self.x + 1
+            end
+        end,
+        draw = function(self)
+            -- dibujar el héroe
+            love.graphics.draw(self.image, self.x + self.img_shift_x, self.y + self.img_shift_y)
+        end,
+        draw_hitbox = function(self)
+            love.graphics.rectangle(
+                "line",
+                self.x + self.hitbox.x,
+                self.y + self.hitbox.y,
+                self.hitbox.w, self.hitbox.h)
+        end,
+        keypressed = function(self, key)
+            if key == "left" then
+                self._left_pressed = true
+            elseif key == "right" then
+                self._right_pressed = true
+            end
+        end,
+        keyreleased = function(self, key)
+            if key == "left" then
+                self._left_pressed = false
+            elseif key == "right" then
+                self._right_pressed = false
+            end
+        end,
+    }
+    return hero
+end
+
+return my_module
+
